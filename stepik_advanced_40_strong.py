@@ -85,10 +85,9 @@ for _ in range(m - 1):
             for r in range(n):
                 num += matrix_m[i][r] * matrix_a[r][j]
             matrix_c[i][j] = num
-    matrix_m = matrix_c
-    print_matrix(matrix_m)
+    for i in range(n):
+        for j in range(n):
+            matrix_m[i][j] = matrix_c[i][j]
 
-'''for r in range(n):
-    for c in range(n):
-        print(matrix_m[r][c], end=' ')
-    print()'''
+print_matrix(matrix_m)
+
