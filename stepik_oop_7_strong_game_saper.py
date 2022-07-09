@@ -66,3 +66,23 @@ class GamePole:
                 continue
             else:
                 self.pole[i][j].mine = True
+            count += 1
+
+        indx = (-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)
+        for x in range(self.n):
+            for y in range(self.n):
+                if self.pole[x][y].mine == False:
+                    result = 0
+                    for i, j in indx:
+                        if 0 <= x + i < self.n and 0 <= y + j < self.n:
+                            if self.pole[x + i][y + j].mine == True:
+                                result += 1
+                    self.pole[x][y].around_mines = result
+
+    def show(self):
+        for line in self.pole:
+            print(*map(lambda x: '#' if not x.fl_open else x.around_mines if not x.mine else '*', line))
+
+
+pole_game = GamePole(10, 12)
+pole_game.show()
